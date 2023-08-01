@@ -2,7 +2,7 @@
 <html lang="en" class="h-100">
 
 <head>
-    <title>App Name: A Coding Project By Natalie Cheng</title>
+    <title>Hundred Looper: A Coding Project By Natalie Cheng</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -17,13 +17,18 @@
     <link href="css/prism.css" rel="stylesheet">
     <link rel="icon" type="image/png" href="img/favicon_io/favicon-32x32.png">
 
+    <!-- Google Fonts for Crimson Text -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@600&display=swap" rel="stylesheet">
+
 </head>
 
 <body class="d-flex flex-column h-100">
     <!-- Nav Section -->
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-nav">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#"><img src="img/NC.png" class="d-inline-block align-text-top" alt="Natalie Cheng Logo" width="30" height="24"> APP NAME</a>
+            <a class="navbar-brand logoFont" href="#"><img src="img/NC.png" class="d-inline-block align-text-top" alt="Natalie Cheng Logo" width="30" height="24"> Hundred Looper</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
                 aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -40,10 +45,10 @@
                         <a class="nav-link active" aria-current="page" href="code.html">The Code</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" target="_blank" href="https://github.com/nataliemcheng/JSSiteTemplate">Git Repo</a>
+                        <a class="nav-link" target="_blank" href="https://github.com/nataliemcheng/HundredLooper">Git Repo</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" target="_blank" href="https://nataliecheng-portfolio.netlify.app/">About</a>
+                        <a class="nav-link" target="_blank" href="https://nataliecheng-portfolio.netlify.app/">About Me</a>
                     </li>
                 </ul>
             </div>
@@ -53,21 +58,91 @@
     <!-- Main Section -->
     <main class="flex-shrink-0">
         <div class="container py-4 px-5 mt-5">
-            <h2 class="border-1 border-bottom border-dark">The Code for APP NAME</h2>
+            <h2 class="border-1 border-bottom border-dark">The Code for Hundred Looper</h2>
             <div class="row row-cols-1 row-cols-lg-2">
                 <div class="col-lg-8">
                     <pre class="line-numbers"><code class="language-javascript">
-                        // Call Hello World
-                        function helloWorld() {
-                            alert("Hello World");
+                        // get the values from the Page
+                        // start or controller function
+                        function getValues() {
+                            // get values from the page
+                            let startValue = document.getElementById("startValue").value;
+                            let endValue = document.getElementById("endValue").value;
+
+
+                            // parse into integers, validates inputs
+                            startValue = parseInt(startValue);
+                            endValue = parseInt(endValue);
+
+                            if(Number.isInteger(startValue) && Number.isInteger(endValue)) {
+                                // call generateNums
+                                let numbers = generateNums(startValue, endValue);
+                                // call displayNums
+                                displayNums(numbers);
+                            } else {
+                                alert("Integers (1, 2, 3, ...) Only");
+                            }
+                        }
+
+                        // generate numbers from startValue to endValue
+                        // logic function(s)
+                        function generateNums(startVal, endVal) {
+                            let numbers = [];
+
+                            // we want to get all numbers from start to end
+                            for (let index = startVal; index <= endVal; index++) {
+                                // this will execute in a loop until index = endVal
+                                numbers.push(index);
+                            }
+
+                            return numbers;
+                        }
+
+                        // display the numbers and mark the even numbers in bold
+                        // display or view functions
+                        function displayNums(numbers) {
+                            let templateRows = "";
+
+                            for (let index = 0; index < numbers.length; index++) {
+                                let className = "even";
+                                let number = numbers[index];
+
+                                if (number % 2 == 0) {
+                                    className = "even";
+                                } else {
+                                    className = "odd";
+                                }
+
+                                // This does not render correctly with Prism, see the source
+                                templateRows += `<tr><td class="${className}">${number}</td></tr>`;
+                            }
+
+                            document.getElementById("results").innerHTML = templateRows;
                         }
                     </code>
                     </pre>
                 </div>
-                <div class="col-lg-4">
-                    <p>The Code is structured in one function.</p>
-                    <h5>Hello World</h5>
-                    <p>Hello World is a function that displays an alert with a message of "Hello World"</p>
+                <div class="col-lg-4 mt-2">
+                    <h5>getValues()</h5>
+                    <p>
+                        The function <strong>getValues()</strong> takes both the start values and end values that the user enters in. This is done by assigning IDs to the start values and end values in HTML
+                        and then using that ID in Js to determine what those values are. Next, it validates the inputs using parseInt(). Then, after using if/else statements and boolean logic to check that both numbers
+                        are integers, the second function generateNums() is called, in which its results are assigned to the variable "numbers". Lastly, it uses that variable as a parameter for the function displayNums(),
+                        which simply displays the numbers onto the page for the user.
+                    </p>
+                    <hr>
+                    <h5>generateNums()</h5>
+                    <p>
+                        The function <strong>generateNums()</strong> takes in the parameters startVal and endVal, which are the numbers the user inputs. An empty array "numbers" is instantiated, which will be used in the for loop.
+                        Using a for loop, all of the numbers from the startValue to the endValue will be inserted into the array using push(). Lastly, it returns the array, which is then used in the first function getValues().
+                    </p>
+                    <hr>
+                    <h5>displayNums()</h5>
+                    <p>
+                        The function <strong>displayNums()</strong>takes in an array "numbers" (the array from generateNums) to display the numbers for the user and marks the even numbers in bold. First, an empty string is initiated. Next, a 
+                        for loop is used to loop through the array, and uses an if statement to classify each number in the array as either even or odd using the variable "className." After a number is appropriately classified, it is added to the 
+                        empty string. Using css, if a number is even, the number is slightly enlarged and bolded. The results are placed in the area designated by ID within the index.html for display. 
+                    </p>
                 </div>
             </div>
         </div>

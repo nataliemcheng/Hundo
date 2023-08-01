@@ -2,7 +2,7 @@
 <html lang="en" class="h-100">
 
 <head>
-    <title>App Name: A Coding Project By Natalie Cheng</title>
+    <title>Hundred Looper: A Coding Project By Natalie Cheng</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -16,13 +16,18 @@
     <link href="css/site.css" rel="stylesheet">
     <link rel="icon" type="image/png" href="img/favicon_io/favicon-32x32.png">
 
+    <!-- Google Fonts for Crimson Text -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@600&display=swap" rel="stylesheet">
+
 </head>
 
 <body class="d-flex flex-column h-100">
     <!-- Nav Section -->
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-nav">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#"><img src="img/NC.png" class="d-inline-block align-text-top" alt="Natalie Cheng Logo" width="30" height="24"> APP NAME</a>
+            <a class="navbar-brand logoFont" href="#"><img src="img/NC.png" class="d-inline-block align-text-top" alt="Natalie Cheng Logo" width="30" height="24"> Hundred Looper</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
                 aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -39,10 +44,10 @@
                         <a class="nav-link" href="code.html">The Code</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" target="_blank" href="https://github.com/nataliemcheng/JSSiteTemplate">Git Repo</a>
+                        <a class="nav-link" target="_blank" href="https://github.com/nataliemcheng/HundredLooper">Git Repo</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" target="_blank" href="https://nataliecheng-portfolio.netlify.app/">About</a>
+                        <a class="nav-link" target="_blank" href="https://nataliecheng-portfolio.netlify.app/">About Me</a>
                     </li>
                 </ul>
             </div>
@@ -51,8 +56,39 @@
 
     <!-- Main Section -->
     <main class="flex-shrink-0">
-        <div class="container">
-            
+        <div class="container mt-5">
+            <div class="row row-cols-1 row-cols-lg-2">
+                <div class="col-lg-4 col border-end border-2">
+                    <h1 class="display-5 fw-bold 1h-1 mb-3">Hundred Looper: A Coding Project</h1>
+                    <h4 class="lead">A Javascript coding exercise using loops. Write a program that displays the numbers from 0 to 100. Displays the even numbers in <strong>bold</strong>.</h4>
+                    <h2 class="mt-5 border-bottom border-2">Instructions</h2>
+                    <p>Enter a starting value and ending value. Press the button and the values will appear.</p>
+                </div>
+                <div class="col-lg-8 col">
+                    <div>
+                        <h5>Enter Values</h5>
+                        <form class="row gy-2 gx-3">
+                            <div class="col">
+                                <input id="startValue" type="number" class="form-control" placeholder="Start Value" value="0" min="0" max="99" aria-label="Start Value">
+                            </div>
+                            <div class="col">
+                                <input id="endValue" type="number" class="form-control" placeholder="End Value" value="100" min="1" max="100" aria-label="End Value">
+                            </div>
+                            <div class="col-12 d-flex justify-content-end">
+                                <button id="btnSubmit" type="button" class="btn btn-dark btn-md">Display the Numbers</button>
+                            </div>
+                        </form>
+                        <h2 class="mt-5 border-bottom border-2">Results</h2>
+                        <div class="table-responsive">
+                            <table class="table table-striped table-sm">
+                                <tbody id="results">
+                                    <!-- Results Go Here -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </main>
 
@@ -85,6 +121,9 @@
         integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous">
     </script>
     <script src="js/site.js"></script>
+    <script>
+        document.getElementById("btnSubmit").addEventListener("click",getValues);
+    </script>
 </body>
 
 </html>
